@@ -20,7 +20,11 @@ public class GreetingResource {
     @Path("/test1")
     @Produces(MediaType.TEXT_PLAIN)
     public String test1() {
-        System.out.println("This is it: " + testProperty);
+        
+        new TestBean().printIt();
+
+        testBean.printIt();
+
         return "test Property from Greeting Resource: " + testProperty;
     }
 

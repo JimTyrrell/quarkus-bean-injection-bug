@@ -14,4 +14,9 @@ public class TestBean {
     {
         return this.testProperty;
     }
+
+    public void printIt()
+    {
+        System.err.println("test property: " + testProperty);
+    }
 }
