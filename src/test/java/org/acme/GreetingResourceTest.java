@@ -27,4 +27,13 @@ public class GreetingResourceTest {
              .body(is("test Property from Greeting Resource: this is a test property"));
     }
 
+    @Test
+    public void test3() {
+        given()
+          .when().get("/hello/test3")
+          .then()
+             .statusCode(200)
+             .body(is("test Property from Greeting Resource: this is a test property"));
+    }
+
 }
