@@ -23,8 +23,6 @@ public class GreetingResource {
         
         new TestBean().printIt();
 
-        testBean.printIt();
-
         return "test Property from Greeting Resource: " + testProperty;
     }
 
@@ -32,6 +30,8 @@ public class GreetingResource {
     @Path("/test2")
     @Produces(MediaType.TEXT_PLAIN)
     public String test2() {
+        System.err.println("here it is: " + testBean.getTestProperty());
+
         return "test Property from Greeting Resource: " + testBean.testProperty;
     }
 

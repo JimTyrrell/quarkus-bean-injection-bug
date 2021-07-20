@@ -15,7 +15,7 @@ public class GreetingResourceTest {
           .when().get("/hello/test1")
           .then()
              .statusCode(200)
-             .body(is("test Property from Greeting Resource: this is a test property"));
+             .body(is("test Property from Greeting Resource: test property"));
     }
 
     @Test
@@ -24,7 +24,7 @@ public class GreetingResourceTest {
           .when().get("/hello/test2")
           .then()
              .statusCode(200)
-             .body(is("test Property from Greeting Resource: this is a test property"));
+             .body(is("test Property from Greeting Resource: test property"));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class GreetingResourceTest {
           .when().get("/hello/test3")
           .then()
              .statusCode(200)
-             .body(is("test Property from Greeting Resource: this is a test property"));
+             .body(is("test Property from Greeting Resource: test property"));
     }
 
 }

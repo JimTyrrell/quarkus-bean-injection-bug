@@ -2,13 +2,12 @@ package org.acme;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 
 @ApplicationScoped
 public class TestBean {
 
     @ConfigProperty(name = "test.property")
-    public String testProperty;
+    String testProperty;
 
     public String getTestProperty()
     {
