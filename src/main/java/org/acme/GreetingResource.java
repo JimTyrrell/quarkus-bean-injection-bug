@@ -11,34 +11,100 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 public class GreetingResource {
 
     @Inject
-    TestBean testBean;
+    JavaBean injectedTestBean;
 
-    @ConfigProperty(name = "test.property")
-    String testProperty;
+    JavaBean regularTestBean = new JavaBean();
+
+    @ConfigProperty(name = "test.memberVariable")
+    String memberVariable;
+
+    @ConfigProperty(name = "test.staticMemberVariable")
+    static String staticMemberVariable;
     
     @GET()
     @Path("/test1")
     @Produces(MediaType.TEXT_PLAIN)
     public String test1() {
-        
-        new TestBean().printIt();
-
-        return "test Property from Greeting Resource: " + testProperty;
+        return "test Property from Greeting Resource: " + memberVariable;
     }
 
     @GET()
-    @Path("/test2")
+    @Path("/test2a")
     @Produces(MediaType.TEXT_PLAIN)
-    public String test2() {
-        System.err.println("here it is: " + testBean.getTestProperty());
-
-        return "test Property from Greeting Resource: " + testBean.testProperty;
+    public String test2a() {
+        System.err.println("Fascinating that the hascode for injectedTestBean is the same for 2a and 2b: " + injectedTestBean  );
+        return "test Property from Greeting Resource: " + injectedTestBean.memberVariable;
     }
 
     @GET()
-    @Path("/test3")
+    @Path("/test2b")
     @Produces(MediaType.TEXT_PLAIN)
-    public String test3() {
-        return "test Property from Greeting Resource: " + testBean.getTestProperty();
+    public String test2b() {
+        System.err.println("Fascinating that the hascode for injectedTestBean is the same for 2a and 2b: " + injectedTestBean  );
+        return "test Property from Greeting Resource: " + injectedTestBean.getMemberVariable();
     }
+
+
+    @GET()
+    @Path("/test2a-regular")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String test2aRegular() {
+        System.err.println("Fascinating that the hascode for injectedTestBean is the same for 2a and 2b: " + regularTestBean  );
+        return "test Property from Greeting Resource: " + regularTestBean.memberVariable;
+    }
+
+    @GET()
+    @Path("/test2b-new")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String test2bNew() {
+        return "test Property from Greeting Resource: " + new JavaBean().getMemberVariable();
+    }
+
+    @GET()
+    @Path("/test2a-new")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String test2aNew() {
+        return "test Property from Greeting Resource: " + new JavaBean().memberVariable;
+    }
+
+    @GET()
+    @Path("/test2b-regular")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String test2bRegular() {
+        System.err.println("Fascinating that the hascode for injectedTestBean is the same for 2a and 2b: " + regularTestBean  );
+        return "test Property from Greeting Resource: " + regularTestBean.getMemberVariable();
+    }
+
+
+
+    @GET()
+    @Path("/test1-static")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String test1Static() {
+        return "test Property from Greeting Resource: " + staticMemberVariable;
+    }
+
+    @GET()
+    @Path("/test2a-static")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String test2aStatic() {
+        System.err.println("Fascinating that the hascode for injectedTestBean is the same for 2a and 2b: " + injectedTestBean  );
+        return "test Property from Greeting Resource: " + JavaBean.staticMemberVariable;
+    }
+
+    @GET()
+    @Path("/test2b-static")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String test2bStatic() {
+        System.err.println("Fascinating that the hascode for injectedTestBean is the same for 2a and 2b: " + injectedTestBean  );
+        return "test Property from Greeting Resource: " + JavaBean.getStaticMemberVariable();
+    }
+
+
+
+
+    
+
+
+    
 }
